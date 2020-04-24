@@ -1,9 +1,9 @@
-This is bare-bone graphical visualizer written in Angular to display the Google Mobility Data during the Covid19 pandemic.
+This is a bare-bone graphical visualizer written in Angular to display the Google Mobility Data during the Covid19 pandemic.
 This application is deplyed to Heroku using docker and served using NGINX.
 
 You can checkout the application here: https://covid-mobility.herokuapp.com
 
-Some development notes (this is really for my to remember what I did)
+Some development notes (this is really for me to remember what I did)
 
 Create DockerFile and nginx.conf files
 change "outputPath": "dist",
