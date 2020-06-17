@@ -29,6 +29,22 @@ export interface IMetaData {
   subregion: IMetaData[];
 }
 
+export enum Columns {
+  CountryCode = 0,
+  CountryName = 1,
+  SubRegion1 = 2,
+  SubRegion2 = 3,
+  ISO3166 = 4,
+  FIPS = 5,
+  Date = 6,
+  Retail = 7,
+  Grocery = 8,
+  Parks = 9,
+  Transit = 10,
+  Workplace = 11,
+  Residential = 12,
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,7 +58,7 @@ export class GoogleMovementService {
   async parseCSV2JSON(): Promise<ICountry[]> {
 
     return new Promise((resolve, reject) => {
-      this.httpClient.get('assets/Global_Mobility_Report_May19.csv', { responseType: 'text' }).subscribe(data => {
+      this.httpClient.get('assets/Global_Mobility_Report_June15.csv', { responseType: 'text' }).subscribe(data => {
         const CR = '\n';
         var lines = data.split(CR);
         // Step 1. extract the header.
@@ -52,19 +68,19 @@ export class GoogleMovementService {
 
         lines.forEach(line => {
           let columnData = line.split(',');
-          let countryCode = columnData[0];
-          let countryName = columnData[1];
-          let subRegionName1 = columnData[2];
-          let subRegionName2 = columnData[3];
+          let countryCode = columnData[Columns.CountryCode];
+          let countryName = columnData[Columns.CountryName];
+          let subRegionName1 = columnData[Columns.SubRegion1];
+          let subRegionName2 = columnData[Columns.SubRegion2];
 
           const entity: IEntity = {
-            timestamp: Date.parse(columnData[4]),
-            retailRecreation: parseFloat(columnData[5]),
-            groceryPharmacy: parseFloat(columnData[6]),
-            parks: parseFloat(columnData[7]),
-            transit: parseFloat(columnData[8]),
-            workplace: parseFloat(columnData[9]),
-            residential: parseFloat(columnData[10]),
+            timestamp: Date.parse(columnData[Columns.Date]),
+            retailRecreation: parseFloat(columnData[Columns.Retail]),
+            groceryPharmacy: parseFloat(columnData[Columns.Grocery]),
+            parks: parseFloat(columnData[Columns.Parks]),
+            transit: parseFloat(columnData[Columns.Transit]),
+            workplace: parseFloat(columnData[Columns.Workplace]),
+            residential: parseFloat(columnData[Columns.Retail]),
           };
 
           let country: ICountry;
