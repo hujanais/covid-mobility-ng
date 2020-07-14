@@ -5,6 +5,10 @@ You can checkout the application here: https://covid-mobility.herokuapp.com
 
 Some development notes (this is really for me to remember what I did)
 
+--- Migrated to use Vercel server.
+
+---- Obsolete Heroku steps ---
+
 Create DockerFile and nginx.conf files
 change "outputPath": "dist",
 heroku container:login
