@@ -58,7 +58,7 @@ export class GoogleMovementService {
   async parseCSV2JSON(): Promise<ICountry[]> {
 
     return new Promise((resolve, reject) => {
-      this.httpClient.get('assets/Global_Mobility_Report_June17.csv', { responseType: 'text' }).subscribe(data => {
+      this.httpClient.get('assets/Global_Mobility_Report_July13.csv', { responseType: 'text' }).subscribe(data => {
         const CR = '\n';
         var lines = data.split(CR);
         // Step 1. extract the header.
